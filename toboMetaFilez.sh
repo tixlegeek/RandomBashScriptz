@@ -1,6 +1,6 @@
 #!/bin/bash
 LINES=()
-for i in *; do
+for i in `find .`; do
 	if [ -f "$i" ]; then
 	REL=$( basename "$i" )
 	MD=$(md5sum -b "$i" | cut -d" " -f1)
@@ -9,7 +9,7 @@ for i in *; do
 	fi
 done
 
-echo "fileMeta myFiles["${#distro[@]}"] = {"
+echo "fileMeta myFiles["${#LINES[@]}"] = {"
 for LINE in "${LINES[@]}"; do
      echo $LINE
 done
